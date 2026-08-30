@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check pull request title
-        # This check covers the pull request title. Run it when the title is raised or altered.
-        if: github.event.action != 'edited' || github.event.changes.title != null
+        # This check covers the pull request title. Run it when GitHub first stores the title (`opened`) and when the title is edited. `reopened`, `synchronize`, and `ready_for_review` do not change the title.
+        if: github.event.action == 'opened' || (github.event.action == 'edited' && github.event.changes.title != null)
         uses: amannn/action-semantic-pull-request@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
