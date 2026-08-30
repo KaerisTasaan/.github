@@ -44,7 +44,7 @@ jobs:
         with:
           go-version: "1.25"
 
-      # This step runs on every pull request except a title edit. There is no path filter. gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` so those files are checked. Keep `.gomarklint.json` include as `.`.
+      # When the event action is `edited`, skip this check. Run the title check only. gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` so those files are checked. Keep `.gomarklint.json` include as `.`.
       - name: Markdown lint
         if: github.event.action != 'edited'
         run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE
