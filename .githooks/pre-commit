@@ -1,0 +1,4 @@
+#!/bin/sh
+# Run gomarklint on Markdown files before commit.
+cd "$(git rev-parse --show-toplevel)" || exit 1
+exec go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json

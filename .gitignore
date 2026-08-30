@@ -1,0 +1,12 @@
+# Cursor IDE
+/.cursor/plans/
+/.cursor/debug.log
+
+# Claude
+/.claude/worktrees/
+
+# MCP
+.codegraph/*
+!.codegraph/.gitignore
+/.ckb
+index.scip

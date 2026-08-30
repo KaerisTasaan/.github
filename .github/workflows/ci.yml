@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize, ready_for_review]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ github.event.action == 'edited' && 'title' || 'commit' }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  checks: read
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check pull request title
+        uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Fail when the last completed ci on this commit failed
+        if: github.event.action == 'edited'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          conclusion=$(gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/check-runs" \
+            --jq '[.check_runs[] | select(.name == "ci" and .status == "completed")] | sort_by(.completed_at) | last | .conclusion // empty')
+          echo "last completed ci conclusion: ${conclusion:-none}"
+          if [ "$conclusion" = "failure" ]; then
+            echo "The last completed ci on this commit failed."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v5
+        if: github.event.action != 'edited'
+
+      - uses: actions/setup-go@v6
+        if: github.event.action != 'edited'
+        with:
+          go-version: "1.25"
+
+      - name: Markdown lint
+        if: github.event.action != 'edited'
+        run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json

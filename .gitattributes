@@ -1,0 +1,25 @@
+* text=auto
+
+# Git
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Shell
+*.ps1 text
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Hooks
+.githooks/* text eol=lf
+
+# Text files
+*.xml text diff=xml
+*.md text
+*.feature text
+*.json text
+*.yml text
+*.yaml text
+
+# Docker
+Dockerfile text
