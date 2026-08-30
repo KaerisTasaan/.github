@@ -1,2 +1,3 @@
-# .github
+## .github
+
 Shared settings

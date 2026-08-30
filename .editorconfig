@@ -1,0 +1,53 @@
+root = true
+
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.json]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.md]
+charset = utf-8
+indent_style = space
+indent_size = 2
+# Preserve trailing whitespace in markdown files for formatting purposes
+trim_trailing_whitespace = false
+
+[*.feature]
+charset = utf-8
+indent_style = space
+# Gherkin recommends two spaces
+indent_size = 2
+
+[*.{yml,yaml}]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.{sh,bat,ps1}]
+indent_style = space
+indent_size = 2
+
+[*.{bat,cmd}]
+indent_style = space
+indent_size = 2
+end_of_line = crlf
+
+[*.sh]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+
+[.githooks/*]
+end_of_line = lf
+
+[{.gitattributes,.gitignore}]
+charset = utf-8
+end_of_line = lf
+
+[Dockerfile]
+indent_style = space
+indent_size = 2
