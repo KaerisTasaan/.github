@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check pull request title
+        # This check covers the pull request title. Run it when GitHub first stores the title (`opened`) and when the title is edited. `reopened`, `synchronize`, and `ready_for_review` do not change the title.
+        if: github.event.action == 'opened' || (github.event.action == 'edited' && github.event.changes.title != null)
         uses: amannn/action-semantic-pull-request@v6
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -44,6 +46,7 @@ jobs:
         with:
           go-version: "1.25"
 
+      # This check covers Markdown in the repository. Skip `edited`: that event is not a content change. gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` so those files are checked. Keep `.gomarklint.json` include as `.`.
       - name: Markdown lint
         if: github.event.action != 'edited'
-        run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json
+        run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE
