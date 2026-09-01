@@ -46,7 +46,7 @@ jobs:
         with:
           go-version: "1.25"
 
-      # This check covers Markdown in the repository. Skip `edited`: that event is not a content change. gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` so those files are checked. Keep `.gomarklint.json` include as `.`.
+      # This check covers Markdown in the repository. Skip `edited`: that event is not a content change. gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` and `.github/pull_request_template.md` so those files are checked. Keep `.gomarklint.json` include as `.`.
       - name: Markdown lint
         if: github.event.action != 'edited'
-        run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE
+        run: go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE .github/pull_request_template.md

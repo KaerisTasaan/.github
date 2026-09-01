@@ -1,9 +1,9 @@
 #!/bin/sh
 # Run gomarklint when a staged Markdown file changed. Include rename and type change. Skip when none changed.
 # Continuous integration still runs this check on every pull request except event action `edited`.
-# gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` so those files are checked. Keep `.gomarklint.json` include as `.`.
+# gomarklint skips hidden directories when it walks `.`. Pass `.github/ISSUE_TEMPLATE` and `.github/pull_request_template.md` so those files are checked. Keep `.gomarklint.json` include as `.`.
 cd "$(git rev-parse --show-toplevel)" || exit 1
 if ! git diff --cached --name-only | grep -q '\.md$'; then
 	exit 0
 fi
-exec go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE
+exec go run github.com/shinagawa-web/gomarklint/v3@v3.2.3 --config .gomarklint.json . .github/ISSUE_TEMPLATE .github/pull_request_template.md
