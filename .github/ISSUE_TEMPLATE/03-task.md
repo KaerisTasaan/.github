@@ -1,6 +1,7 @@
 ---
 name: Task
 about: Other work, including spec versus live before a product decision.
+labels: needs-triage
 type: Task
 ---
 

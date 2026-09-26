@@ -1,7 +1,7 @@
 ---
 name: Quality
 about: Existing behaviour failed, a required check is missing or wrong, or a stated performance bound failed.
-labels: bug
+labels: bug, needs-triage
 type: Bug
 ---
 
