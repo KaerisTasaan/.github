@@ -4,6 +4,10 @@
 
 <!-- The GitHub issue this pull request closes or implements. Use the GitHub issue number or URL. Write No linked issue if there is none. -->
 
+## User intent
+
+<!-- Optional. A list of user intent quotes. Omit this heading when the linked issue supplies user intent. -->
+
 ## Overview
 
 <!-- A short statement of what this pull request changes. One to three sentences. Facts only. -->
