@@ -1,7 +1,7 @@
 ---
 name: Enhancement
 about: New capability, faster with no failed bound, or structure change with behaviour unchanged.
-labels: enhancement
+labels: enhancement, needs-triage
 type: Feature
 ---
 
