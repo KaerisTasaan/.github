@@ -6,7 +6,7 @@
 
 ## User Intent
 
-<!-- Optional. A list of user intent quotes. Omit this heading when the linked issue supplies user intent. -->
+<!-- Optional. A list of user intent quotes about the technical need. Omit a quote that angers or distresses a reader. Omit this heading when the linked issue has user intent. -->
 
 ## Overview
 
