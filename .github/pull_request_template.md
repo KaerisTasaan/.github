@@ -8,9 +8,9 @@
 
 <!-- A short statement of what this pull request changes. One to three sentences. Facts only. -->
 
-## Behaviour
+## Behavior
 
-<!-- The caller or user outcome that changes after merge. Write No behaviour change and the reason if behaviour stays the same. -->
+<!-- The caller or user outcome that changes after merge. Write No behavior change and the reason if behavior stays the same. -->
 
 ## Risk Impact Assessment
 
